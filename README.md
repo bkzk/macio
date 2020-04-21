@@ -2,6 +2,17 @@
 macio provides MAC address and vendor detail information retrieved from macaddress.io API
 
 
+## Instalation/Requirements
+ 
+
+It runs on python 3 and requires the `requests` library. 
+
+```
+pip install requests
+```
+
+
+
 ## SYNOPSIS 
 
 ```
@@ -103,5 +114,55 @@ Raw output in requested format: vendor
 
 Cumulus Networks, Inc
 ```
+
+
+## Docker 
+
+
+In case you would like to test it in docker, the Dockerfile is found under the docker directory. 
+
+
+```
+cd docker && docker build --tag macio:v1.0 .
+```
+
+To make your life easier add below two line to your ~/.bashrc. Replace <YOUR_API_KEY> with the key you get from the macadress.io site.
+
+```
+export MIO_APIKEY=<YOUR_API_KEY>
+alias macio="docker run --rm -e MIO_APIKEY --name macio macio:v1.0"
+```
+
+Remeber to reload the rc file
+
+```
+source ~/.bashrc
+```
+
+You can test it: 
+
+```
+type macio
+macio is aliased to `docker run --rm -e MIO_APIKEY --name macio macio:v1.0'
+
+
+macio -h
+Usage: macio.py [OPTIONS]
+
+Options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+
+  Input Options:
+    -m MAC, --mac-address=MAC
+                        mac address to lookup
+    -k APIKEY, --api-key=APIKEY
+                        API key to macaddress.io
+    -o OUTPUT, --output=OUTPUT
+                        optional raw output [json|xml|csv|vendor]
+    -q, --quiet         only raw output, depend on above outputs
+```
+
+
 
 That's all you need!

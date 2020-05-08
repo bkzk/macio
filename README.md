@@ -166,3 +166,8 @@ Options:
 
 
 That's all you need!
+
+### Note 
+
+
+BTW this tool was done as an excercise. The macaddress.io provides its own client library for [python](https://pypi.org/project/maclookup)
